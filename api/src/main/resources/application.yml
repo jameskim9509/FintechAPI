@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    include:
+      # get properties of domain project resources/application-domain.yml
+      - domain
+
+  component:
+    scan:
+      base-packages:
+        - com.zerobase.domain.repository
+        - com.zerobase.api
+
+  datasource:
+    initialization-mode: always
+    schema: classpath:schema.sql
+    data: classpath:data.sql

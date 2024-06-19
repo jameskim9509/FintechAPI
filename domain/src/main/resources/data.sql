@@ -1,0 +1,1 @@
+insert ignore into USR_INFO(usr_key, usr_reg_num, usr_nm, usr_icm_amt) values("1", "1234", "user", 2000000);

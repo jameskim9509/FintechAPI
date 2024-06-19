@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "USR_INFO")
-class UserInfo (
+data class UserInfo (
     @Column(name = "usr_key")
     val userKey: String,
 
