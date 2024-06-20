@@ -9,7 +9,8 @@ class TestService (
     private val userInfoRepository : UserInfoRepository
 )
 {
-    fun testGetService(userKey: String) = userInfoRepository.findByUserKey(userKey).toDto()
+    fun testGetService(userKey: String) = userInfoRepository.findByUserKey(userKey)?.toDto()
+            ?: throw RuntimeException("UserKey Not Found")
 
     private fun UserInfo.toDto() = TestDto.UserInfoDto(userKey, userRegistrationNumber, userName, userIncomeAmount)
 }
