@@ -4,6 +4,10 @@ spring:
       # get properties of domain project resources/application-domain.yml
       - domain
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
   component:
     scan:
       base-packages:
