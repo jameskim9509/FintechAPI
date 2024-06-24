@@ -40,5 +40,12 @@ class LoanRequestServiceImpl(
             userInfoRepository.save(userInfoDto.toEntity());
 
     override fun loanRequestReview(userInfo: UserInfoDto) {
+        loanRequestSender.sendMessage(
+                KafkaTopic.LOAN_REQUEST,
+                userInfo.toLoanRequestKafkaDto()
+        )
     }
+
+    private fun UserInfoDto.toLoanRequestKafkaDto() =
+            com.zerobase.kafka.dto.LoanRequestDto(userKey, userName, userIncomeAmount, userRegistrationNumber)
 }
