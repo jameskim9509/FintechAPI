@@ -13,6 +13,7 @@ spring:
       base-packages:
         - com.zerobase.domain.repository
         - com.zerobase.api
+        - com.zerobase.kafka
 
   datasource:
     initialization-mode: always
