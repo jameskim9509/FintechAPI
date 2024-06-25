@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class LoanRequestServiceImpl: LoanRequestService {
-    override fun loanRequest(loanReuqestDto: LoanRequestDto) {
+    override fun loanRequest(loanReuqestKafkDto: LoanRequestDto) {
         TODO("Not yet implemented")
     }
 }

@@ -1,11 +1,11 @@
-package com.zerobase.consumer
+package com.zerobase.css
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ConsumerApplication
+class CssApplication
 
 fun main(args: Array<String>) {
-    runApplication<ConsumerApplication>(*args)
+    runApplication<CssApplication>(*args)
 }
