@@ -6,8 +6,7 @@ class LoanRequestDto {
             val userName: String,
             val userIncomeAmount: Long,
             val userRegistrationNumber: String
-    ){
-    }
+    )
 
     data class LoanRequestOutputDto(
             val userKey: String,

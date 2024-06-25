@@ -6,3 +6,5 @@ spring:
     scan:
       base-packages:
         - com.zerobase.consumer
+        - com.zerobase.domain.repository
+        - com.zerobase.kafka

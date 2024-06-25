@@ -8,5 +8,9 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka:2.8.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.+")
 
+    //domain
+    implementation(project(":domain"))
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
     implementation("org.springframework.boot:spring-boot-starter-web")
 }
