@@ -5,6 +5,7 @@ import com.zerobase.api.exception.CustomException
 import com.zerobase.domain.repository.LoanReviewRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import org.springframework.cache.annotation.Cacheable
 
 @Service
 @Transactional
@@ -22,9 +23,11 @@ class LoanReviewServiceImpl(
         )
     }
 
+    @Cacheable(value = ["REVIEW"], key = "#userKey", cacheManager = "redisCacheManager")
     override fun getLoanResult(userKey: String): LoanReviewDto.LoanReview {
         val loanReview = loanReviewRepository.findByUserKey(userKey)
                 ?: throw CustomException(CustomErrorCode.RESULT_NOT_FOUND)
+
         return LoanReviewDto.LoanReview(
                 userKey = loanReview.userKey,
                 loanLimitAmount = loanReview.loanLimitedAmount,
