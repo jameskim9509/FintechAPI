@@ -48,3 +48,7 @@ subprojects {
 		testImplementation("org.springframework.boot:spring-boot-starter-test")
 	}
 }
+
+tasks.register("buildDockerImages") {
+	dependsOn(subprojects.flatMap { it.tasks.matching { it.name == "buildDockerImage" }})
+}
