@@ -8,13 +8,6 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-  component:
-    scan:
-      base-packages:
-        - com.zerobase.domain.repository
-        - com.zerobase.api
-        - com.zerobase.kafka
-
   datasource:
     initialization-mode: always
     schema: classpath:schema.sql

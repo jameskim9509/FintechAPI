@@ -47,5 +47,7 @@ class LoanRequestServiceImpl(
     }
 
     private fun UserInfoDto.toLoanRequestKafkaDto() =
-            com.zerobase.kafka.dto.LoanRequestDto(userKey, userName, userIncomeAmount, userRegistrationNumber)
+            com.zerobase.kafka.dto.LoanRequestDto(
+                    userKey, userName, userIncomeAmount, userRegistrationNumber
+            )
 }

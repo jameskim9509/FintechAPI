@@ -2,9 +2,7 @@ server:
   port: 8080
 
 spring:
-  component:
-    scan:
-      base-packages:
-        - com.zerobase.consumer
-        - com.zerobase.domain.repository
-        - com.zerobase.kafka
+  profiles:
+    include:
+      # get properties of domain project resources/application-domain.yml
+      - domain

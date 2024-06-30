@@ -5,8 +5,8 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.zerobase.api.loan.encrypt.Encryptor
 import com.zerobase.domain.domain.UserInfo
 import com.zerobase.domain.repository.UserInfoRepository
-import io.mockk.every
-import io.mockk.spyk
+import com.zerobase.kafka.producer.LoanRequestSender
+import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -27,7 +27,10 @@ internal class LoanRequestControllerTest {
     private lateinit var keyGenerator: KeyGenerator
     private lateinit var encryptor: Encryptor
 
-    private val userInfoRepository: UserInfoRepository= spyk()
+    private val loanRequestSender: LoanRequestSender = mockk(relaxed = true)
+
+    private val userInfoRepository: UserInfoRepository = mockk()
+
     private lateinit var mapper: ObjectMapper
 
     private lateinit var loanRequestServiceImpl: LoanRequestServiceImpl
@@ -41,10 +44,11 @@ internal class LoanRequestControllerTest {
         keyGenerator = KeyGenerator()
         encryptor = Encryptor()
 
-        loanRequestServiceImpl = LoanRequestServiceImpl(
-                keyGenerator, encryptor, userInfoRepository
+        loanRequestServiceImpl = spyk(
+                LoanRequestServiceImpl(keyGenerator, encryptor, userInfoRepository, loanRequestSender)
         )
         loanRequestController = LoanRequestController(loanRequestServiceImpl)
+
         mockMvc = MockMvcBuilders.standaloneSetup(loanRequestController).build()
         mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
     }
@@ -60,6 +64,7 @@ internal class LoanRequestControllerTest {
                     )
 
             every { userInfoRepository.save(any()) } returns UserInfo("", "", "", 1)
+            every { loanRequestServiceImpl.loanRequestReview(any())} returns Unit
 
             mockMvc.post(
                     "$baseUrl/request"
