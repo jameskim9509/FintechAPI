@@ -1,7 +1,7 @@
 version: '2'
 services:
   zookeeper:
-    image: wrustmeister/zookeeper
+    image: wurstmeister/zookeeper
     container_name: zookeeper
     ports:
       - "2181:2181"
@@ -67,7 +67,7 @@ services:
       - fintech
 
   gateway:
-    image: nginx:latest
+    image: proxy:0.0.1
     container_name: proxy
     ports:
       - "8085:8085"

@@ -49,6 +49,32 @@ subprojects {
 	}
 }
 
-tasks.register("buildDockerImages") {
-	dependsOn(subprojects.flatMap { it.tasks.matching { it.name == "buildDockerImage" }})
+project(":api") {
+	dependencies {
+		implementation(project(":kafka"))
+		implementation(project(":domain"))
+	}
+}
+
+project(":consumer") {
+	dependencies {
+		implementation(project(":kafka"))
+		implementation(project(":domain"))
+	}
+}
+
+project(":domain") {
+	val jar: Jar by tasks
+	val bootJar: org.springframework.boot.gradle.tasks.bundling.BootJar by tasks
+
+	bootJar.enabled = false
+	jar.enabled = true
+}
+
+project(":kafka") {
+	val jar: Jar by tasks
+	val bootJar: org.springframework.boot.gradle.tasks.bundling.BootJar by tasks
+
+	bootJar.enabled = false
+	jar.enabled = true
 }

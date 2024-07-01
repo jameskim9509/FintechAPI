@@ -9,7 +9,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/fintech?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://fintech-mysql:3306/fintech?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: fintech
     password: fintech
 
